@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		691106852D68B56500ED6549 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 691106842D68B56500ED6549 /* RxBlocking */; };
 		691106892D68B56500ED6549 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 691106882D68B56500ED6549 /* RxCocoa */; };
 		6911068D2D68B56500ED6549 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 6911068C2D68B56500ED6549 /* RxRelay */; };
 		691106912D68B56500ED6549 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 691106902D68B56500ED6549 /* RxSwift */; };
-		691106952D68B56500ED6549 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 691106942D68B56500ED6549 /* RxTest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				691106952D68B56500ED6549 /* RxTest in Frameworks */,
 				6911068D2D68B56500ED6549 /* RxRelay in Frameworks */,
 				691106892D68B56500ED6549 /* RxCocoa in Frameworks */,
-				691106852D68B56500ED6549 /* RxBlocking in Frameworks */,
 				691106912D68B56500ED6549 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,11 +134,9 @@
 			);
 			name = mvvm;
 			packageProductDependencies = (
-				691106842D68B56500ED6549 /* RxBlocking */,
 				691106882D68B56500ED6549 /* RxCocoa */,
 				6911068C2D68B56500ED6549 /* RxRelay */,
 				691106902D68B56500ED6549 /* RxSwift */,
-				691106942D68B56500ED6549 /* RxTest */,
 			);
 			productName = mvvm;
 			productReference = 6911064F2D68B51A00ED6549 /* mvvm.app */;
@@ -599,11 +593,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		691106842D68B56500ED6549 /* RxBlocking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 691106832D68B56500ED6549 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxBlocking;
-		};
 		691106882D68B56500ED6549 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 691106832D68B56500ED6549 /* XCRemoteSwiftPackageReference "RxSwift" */;
@@ -618,11 +607,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 691106832D68B56500ED6549 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
-		};
-		691106942D68B56500ED6549 /* RxTest */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 691106832D68B56500ED6549 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxTest;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

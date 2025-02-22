@@ -10,6 +10,7 @@
 		691106892D68B56500ED6549 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 691106882D68B56500ED6549 /* RxCocoa */; };
 		6911068D2D68B56500ED6549 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 6911068C2D68B56500ED6549 /* RxRelay */; };
 		691106912D68B56500ED6549 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 691106902D68B56500ED6549 /* RxSwift */; };
+		69BCDCF22D6A0E9900D290E1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 69BCDCF12D6A0E9900D290E1 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 			files = (
 				6911068D2D68B56500ED6549 /* RxRelay in Frameworks */,
 				691106892D68B56500ED6549 /* RxCocoa in Frameworks */,
+				69BCDCF22D6A0E9900D290E1 /* RealmSwift in Frameworks */,
 				691106912D68B56500ED6549 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,6 +126,7 @@
 				6911064B2D68B51A00ED6549 /* Sources */,
 				6911064C2D68B51A00ED6549 /* Frameworks */,
 				6911064D2D68B51A00ED6549 /* Resources */,
+				69BCDCF32D6A1C1B00D290E1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -137,6 +140,7 @@
 				691106882D68B56500ED6549 /* RxCocoa */,
 				6911068C2D68B56500ED6549 /* RxRelay */,
 				691106902D68B56500ED6549 /* RxSwift */,
+				69BCDCF12D6A0E9900D290E1 /* RealmSwift */,
 			);
 			productName = mvvm;
 			productReference = 6911064F2D68B51A00ED6549 /* mvvm.app */;
@@ -222,6 +226,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				691106832D68B56500ED6549 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				69BCDCEE2D6A0E9900D290E1 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 691106502D68B51A00ED6549 /* Products */;
@@ -258,6 +263,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69BCDCF32D6A1C1B00D290E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect --format # 自動修正の有効化\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6911064B2D68B51A00ED6549 /* Sources */ = {
@@ -308,7 +333,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mvvm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -336,7 +361,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mvvm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -590,6 +615,14 @@
 				version = 6.9.0;
 			};
 		};
+		69BCDCEE2D6A0E9900D290E1 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = revision;
+				revision = bae6c4be7df169fdb047d0ad63f902c1e2665e83;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -607,6 +640,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 691106832D68B56500ED6549 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		69BCDCF12D6A0E9900D290E1 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69BCDCEE2D6A0E9900D290E1 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

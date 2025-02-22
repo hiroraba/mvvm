@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Todo {
+    let id: String
+    let title: String
+    var isCompleted: Bool
+}

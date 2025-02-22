@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import RxSwift
+
+protocol TodoRepository {
+    func fetchTodos() -> Observable<[Todo]>
+    func addTodo(_ todo: Todo) -> Completable
+    func updateTodo(_ todo: Todo) -> Completable
+    func deleteTodo(_ todo: Todo) -> Completable
+}

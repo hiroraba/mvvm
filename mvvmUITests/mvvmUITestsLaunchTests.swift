@@ -2,7 +2,7 @@
 //  mvvmUITestsLaunchTests.swift
 //  mvvmUITests
 //
-//  Created by 松尾宏規 on 2025/02/21.
+//  Created by hiroraba on 2025/02/21.
 //
 
 import XCTest

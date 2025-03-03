@@ -7,24 +7,25 @@
 
 import UIKit
 
-final class TodoListCoodinator {
+final class TodoListCoordinator {
     private let navigationController: UINavigationController
-
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-
-    /// Todo一覧画面を起動する
+    
     func start() {
         let repository = TodoRepositoryImpl()
         let viewModel = TodoListViewModel(repository: repository)
         let viewController = TodoListViewController(viewModel: viewModel)
+        
+        // セル選択時の処理で TodoDetail へ遷移
+        viewController.didSelectTodo = { [weak self] todo in
+            guard let self = self else { return }
+            let detailCoordinator = TodoDetailCoordinator(navigationController: self.navigationController, todo: todo)
+            detailCoordinator.start()
+        }
+        
         navigationController.pushViewController(viewController, animated: true)
-    }
-
-    /// Todo詳細画面へ遷移する
-    func showTodoDetail(todo: Todo) {
-//        let detailCoordinator = TodoDetailCoordinator(navigationController: navigationController, todo: todo)
-//        detailCoordinator.start()
     }
 }

@@ -9,79 +9,74 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class TodoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+final class TodoListViewController: UIViewController {
     private let viewModel: TodoListViewModel
     private let tableView = UITableView()
     private let disposeBag = DisposeBag()
-
+    
+    // セル選択時のアクション通知用クロージャ
+    var didSelectTodo: ((Todo) -> Void)?
+    
     init(viewModel: TodoListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
+    // Storyboard 経由では生成されない前提
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        bindViewModel()
-        
-        setupNavigationBar()
-        
-        tableView.frame = view.bounds
-        view.addSubview(tableView)
-
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-    }
-
-    private func setupUI() {
         view.backgroundColor = .white
-
-        tableView.frame = view.bounds
-        view.addSubview(tableView)
+        title = "TODO一覧"
+        setupNavigationBar()
+        setupTableView()
+        bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 画面が表示されるたびに最新のデータを取得して TableView を更新する
+        viewModel.fetchTodos()
     }
     
     private func setupNavigationBar() {
-        // ナビゲーションバーのタイトル
-        title = "TODO一覧"
-            
-        // ナビゲーションバーの右側に「追加」ボタンを配置
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-            navigationItem.rightBarButtonItem = addButton
-            
-        // RxSwiftでタップイベントをハンドルする
+        navigationItem.rightBarButtonItem = addButton
+        
         addButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                // 新しいTODOを追加
                 self?.viewModel.addTodo(title: "新しいTODO")
-            }).disposed(by: disposeBag)
-        }
-        
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func setupTableView() {
+        tableView.frame = view.bounds
+        view.addSubview(tableView)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
     private func bindViewModel() {
         viewModel.todos
+            .asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "cell")) { _, todo, cell in
                 cell.textLabel?.text = todo.title
             }
             .disposed(by: disposeBag)
-
-        // セル削除
+        
         tableView.rx.itemDeleted
             .subscribe(onNext: { [weak self] indexPath in
                 self?.viewModel.deleteTodo(at: indexPath.row)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = viewModel.todos.value[indexPath.row].title
-        return cell
+        
+        tableView.rx.modelSelected(Todo.self)
+            .subscribe(onNext: { [weak self] todo in
+                self?.didSelectTodo?(todo)
+            })
+            .disposed(by: disposeBag)
     }
 }

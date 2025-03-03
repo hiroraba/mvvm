@@ -9,10 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-import Foundation
-import RxSwift
-import RxCocoa
-
 final class TodoListViewModel {
     private let repository: TodoRepository
     private let disposeBag = DisposeBag()
@@ -25,7 +21,7 @@ final class TodoListViewModel {
     }
 
     /// TODO一覧を取得
-    private func fetchTodos() {
+    func fetchTodos() {
         repository.fetchTodos()
             .subscribe(onNext: { [weak self] todos in
                 self?.todos.accept(todos)

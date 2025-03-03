@@ -77,16 +77,17 @@ final class TodoDetailViewController: UIViewController {
         // 初期値の設定
         titleTextField.text = viewModel.todo.title
         isCompletedSwitch.isOn = viewModel.todo.isCompleted
-        
+
         // ユーザ入力を viewModel の Relay にバインド
         titleTextField.rx.text.orEmpty
-            .skip(1)  // 初期値をスキップ
+            .skip(1)
             .bind(to: viewModel.titleRelay)
             .disposed(by: disposeBag)
-        
+
         isCompletedSwitch.rx.value
             .skip(1)
             .bind(to: viewModel.isCompletedRelay)
             .disposed(by: disposeBag)
     }
+
 }

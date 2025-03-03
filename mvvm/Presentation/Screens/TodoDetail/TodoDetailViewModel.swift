@@ -13,25 +13,24 @@ final class TodoDetailViewModel {
     let titleRelay: BehaviorRelay<String>
     let isCompletedRelay: BehaviorRelay<Bool>
     
-    private let repository: TodoRepository
+    private let updateTodoUseCase: UpdateTodoUseCase
     private let disposeBag = DisposeBag()
     
-    init(todo: Todo, repository: TodoRepository) {
+    init(todo: Todo, updateTodoUseCase: UpdateTodoUseCase) {
         self.todo = todo
-        self.repository = repository
+        self.updateTodoUseCase = updateTodoUseCase
         self.titleRelay = BehaviorRelay(value: todo.title)
         self.isCompletedRelay = BehaviorRelay(value: todo.isCompleted)
     }
     
-    /// 保存処理を実行し、保存完了時に onCompleted を発行する Completable を返す
+    /// Todo を更新
     func saveChanges() -> Completable {
         let updatedTodo = Todo(id: todo.id,
                                title: titleRelay.value,
                                isCompleted: isCompletedRelay.value)
-        return repository.updateTodo(updatedTodo)
+        return updateTodoUseCase.execute(todo: updatedTodo)
             .do(onCompleted: { [weak self] in
                 self?.todo = updatedTodo
-                print("Todoが更新されました")
             })
     }
 }

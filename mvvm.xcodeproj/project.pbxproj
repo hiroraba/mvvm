@@ -13,6 +13,20 @@
 		69BCDCF22D6A0E9900D290E1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 69BCDCF12D6A0E9900D290E1 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		69D39CEA2D75F320008E32A9 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		691106662D68B51C00ED6549 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -34,6 +48,7 @@
 		6911064F2D68B51A00ED6549 /* mvvm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mvvm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		691106652D68B51C00ED6549 /* mvvmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mvvmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6911066F2D68B51C00ED6549 /* mvvmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mvvmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		69D39CBD2D75EF3D008E32A9 /* mvvm.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = mvvm.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -116,6 +131,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		69D39CBF2D75EF3D008E32A9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,6 +151,7 @@
 				69BCDCF32D6A1C1B00D290E1 /* ShellScript */,
 			);
 			buildRules = (
+				69D39CEA2D75F320008E32A9 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -231,6 +254,12 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 691106502D68B51A00ED6549 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 69D39CBF2D75EF3D008E32A9 /* Products */;
+					ProjectRef = 69D39CBD2D75EF3D008E32A9 /* mvvm.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6911064E2D68B51A00ED6549 /* mvvm */,
@@ -280,7 +309,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect --format # 自動修正の有効化\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect mvvm # 自動修正の有効化\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

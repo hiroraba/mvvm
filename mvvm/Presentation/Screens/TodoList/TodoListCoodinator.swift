@@ -16,13 +16,17 @@ final class TodoListCoordinator {
     
     func start() {
         let repository = TodoRepositoryImpl()
-        let viewModel = TodoListViewModel(repository: repository)
+        
+        let fetchTodosUseCase = FetchTodosUseCase(repository: repository)
+        let deleteTodoUseCase = DeleteTodoUseCase(repository: repository)
+        let saveTodoUseCase = SaveTodoUseCase(repository: repository)
+        
+        let viewModel = TodoListViewModel(fetchTodosUseCase: fetchTodosUseCase, saveTodoUseCase: saveTodoUseCase, deleteTodoUseCase: deleteTodoUseCase)
         let viewController = TodoListViewController(viewModel: viewModel)
         
-        // セル選択時の処理で TodoDetail へ遷移
         viewController.didSelectTodo = { [weak self] todo in
             guard let self = self else { return }
-            let detailCoordinator = TodoDetailCoordinator(navigationController: self.navigationController, todo: todo)
+            let detailCoordinator = TodoDetailCoordinator(navigationController: self.navigationController, todo: todo, repository: repository)
             detailCoordinator.start()
         }
         

@@ -12,17 +12,17 @@ final class TodoDetailViewModel {
     private(set) var todo: Todo
     let titleRelay: BehaviorRelay<String>
     let isCompletedRelay: BehaviorRelay<Bool>
-    
+
     private let updateTodoUseCase: UpdateTodoUseCase
     private let disposeBag = DisposeBag()
-    
+
     init(todo: Todo, updateTodoUseCase: UpdateTodoUseCase) {
         self.todo = todo
         self.updateTodoUseCase = updateTodoUseCase
         self.titleRelay = BehaviorRelay(value: todo.title)
         self.isCompletedRelay = BehaviorRelay(value: todo.isCompleted)
     }
-    
+
     /// Todo を更新
     func saveChanges() -> Completable {
         let updatedTodo = Todo(id: todo.id,

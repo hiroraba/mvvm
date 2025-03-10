@@ -8,12 +8,12 @@
 import RxSwift
 
 final class DeleteTodoUseCase {
-    private let repository:TodoRepository
-    
+    private let repository: TodoRepository
+
     init(repository: TodoRepository) {
         self.repository = repository
     }
-    
+
     func execute(todo: Todo) -> Completable {
         return repository.deleteTodo(todo)
     }

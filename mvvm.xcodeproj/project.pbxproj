@@ -142,11 +142,11 @@
 				6911064B2D68B51A00ED6549 /* Sources */,
 				6911064C2D68B51A00ED6549 /* Frameworks */,
 				6911064D2D68B51A00ED6549 /* Resources */,
-				69BCDCF32D6A1C1B00D290E1 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				698E969B2D7F301900C22492 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				691106512D68B51A00ED6549 /* mvvm */,
@@ -243,6 +243,7 @@
 			packageReferences = (
 				691106832D68B56500ED6549 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				69BCDCEE2D6A0E9900D290E1 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				698E96992D7F2FF200C22492 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 691106502D68B51A00ED6549 /* Products */;
@@ -290,26 +291,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		69BCDCF32D6A1C1B00D290E1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect mvvm # 自動修正の有効化\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		6911064B2D68B51A00ED6549 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -344,6 +325,10 @@
 			isa = PBXTargetDependency;
 			target = 6911064E2D68B51A00ED6549 /* mvvm */;
 			targetProxy = 691106702D68B51C00ED6549 /* PBXContainerItemProxy */;
+		};
+		698E969B2D7F301900C22492 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 698E969A2D7F301900C22492 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -641,6 +626,14 @@
 				version = 6.9.0;
 			};
 		};
+		698E96992D7F2FF200C22492 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.58.2;
+			};
+		};
 		69BCDCEE2D6A0E9900D290E1 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -666,6 +659,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 691106832D68B56500ED6549 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		698E969A2D7F301900C22492 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 698E96992D7F2FF200C22492 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		69BCDCF12D6A0E9900D290E1 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;

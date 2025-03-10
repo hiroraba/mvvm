@@ -17,12 +17,12 @@ final class TodoDetailCoordinator {
         self.todo = todo
         self.repository = repository
     }
-    
+
     func start() {
         let updateTodoUseCase = UpdateTodoUseCase(repository: repository)
         let viewModel = TodoDetailViewModel(todo: todo, updateTodoUseCase: updateTodoUseCase)
         let viewController = TodoDetailViewController(viewModel: viewModel)
-        
+
         navigationController.pushViewController(viewController, animated: true)
     }
 }

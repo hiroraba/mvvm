@@ -9,11 +9,11 @@ import RxSwift
 
 final class FetchTodosUseCase {
     private let repository: TodoRepository
-    
+
     init(repository: TodoRepository) {
         self.repository = repository
     }
-    
+
     func execute() -> Observable<[Todo]> {
         return repository.fetchTodos()
     }

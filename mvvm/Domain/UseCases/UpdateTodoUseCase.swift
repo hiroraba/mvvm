@@ -9,11 +9,11 @@ import RxSwift
 
 final class UpdateTodoUseCase {
     private let repository: TodoRepository
-    
+
     init(repository: TodoRepository) {
         self.repository = repository
     }
-    
+
     func execute(todo: Todo) -> Completable {
         return repository.updateTodo(todo)
     }

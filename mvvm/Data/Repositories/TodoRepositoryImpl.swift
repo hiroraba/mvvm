@@ -13,6 +13,7 @@ final class TodoRepositoryImpl: TodoRepository {
     private let realm: Realm
 
     init() {
+        // swiftlint:disable:next force_try
         realm = try! Realm() // 簡略化のためエラーハンドリング省略
     }
 

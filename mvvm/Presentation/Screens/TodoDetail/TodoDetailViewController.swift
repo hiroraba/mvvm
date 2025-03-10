@@ -55,13 +55,14 @@ final class TodoDetailViewController: UIViewController {
             .flatMapLatest { [weak self] _ -> Completable in
                 guard let self = self else { return Completable.empty() }
                 return self.viewModel.saveChanges()
-                    .observe(on: MainScheduler.instance)  // MainSchedulerで実行するよう指定
+                    .observe(on: MainScheduler.instance)
+                    .do(onCompleted: { [weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    })
             }
-            .subscribe(onCompleted: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-            })
+            .ignoreElements()
+            .subscribe()
             .disposed(by: disposeBag)
-
     }
 
     private func setupUI() {
